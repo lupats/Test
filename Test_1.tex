@@ -1,0 +1,1258 @@
+\documentclass[]{tufte-handout}
+
+% ams
+\usepackage{amssymb,amsmath}
+
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \makeatletter
+  \@ifpackageloaded{fontspec}{}{\usepackage{fontspec}}
+  \makeatother
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+  \makeatletter
+  \@ifpackageloaded{soul}{
+     \renewcommand\allcapsspacing[1]{{\addfontfeature{LetterSpace=15}#1}}
+     \renewcommand\smallcapsspacing[1]{{\addfontfeature{LetterSpace=10}#1}}
+   }{}
+  \makeatother
+
+\fi
+
+% graphix
+\usepackage{graphicx}
+\setkeys{Gin}{width=\linewidth,totalheight=\textheight,keepaspectratio}
+
+% booktabs
+\usepackage{booktabs}
+
+% url
+\usepackage{url}
+
+% hyperref
+\usepackage{hyperref}
+
+% units.
+\usepackage{units}
+
+
+\setcounter{secnumdepth}{-1}
+
+% citations
+
+% pandoc syntax highlighting
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\newenvironment{Shaded}{}{}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{#1}}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{#1}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{#1}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+
+% longtable
+
+% multiplecol
+\usepackage{multicol}
+
+% strikeout
+\usepackage[normalem]{ulem}
+
+% morefloats
+\usepackage{morefloats}
+
+
+% tightlist macro required by pandoc >= 1.14
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+% title / author / date
+\title{Lucinda Tsunga Test}
+\date{}
+
+
+\begin{document}
+
+\maketitle
+
+
+
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Loading the necessary packages using pacman}
+\KeywordTok{library}\NormalTok{(pacman)}
+\KeywordTok{p_load}\NormalTok{(tidyverse, magrittr, haven, psych, kableExtra, }
+\NormalTok{    gmodels, vcd, psych, caret, cowplot, tufte, }
+\NormalTok{    caret)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Loading our two datasets}
+\NormalTok{delinquency <-}\StringTok{ }\KeywordTok{read_sav}\NormalTok{(}\StringTok{"Cambridge_delinquency_with_caseid (1).sav"}\NormalTok{)}
+\NormalTok{conviction <-}\StringTok{ }\KeywordTok{read_sav}\NormalTok{(}\StringTok{"conviction_data.sav"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Question 1
+
+Create a data set from the data files containing the variables that you
+want to use in your analysis. In other words, all the variables you want
+to use to understand and model the early life predictors of criminality.
+You must include information about convictions at different ages in your
+data set i.e., you need to merge the two data files, and select the
+variables and cases you need for the later analysis. Rename variables so
+that they are identifiable and usable. If you can do this
+programmatically i.e., use the tidyverse and other packages to
+manipulate the data files, and variable names, you will receive higher
+marks for this question.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# I select the variables I need from the}
+\CommentTok{# delinquency dataset based on the key results}
+\CommentTok{# from the study, the predictors of offending}
+\CommentTok{# (in this case I will use the variables total}
+\CommentTok{# number of convictions - 30 and offending in}
+\CommentTok{# adulthood -37) were antisocial child}
+\CommentTok{# behavior (combined conduct disorder 54),}
+\CommentTok{# impulsivity (porteus maze test qualitative}
+\CommentTok{# score 121), low intelligence or attainment}
+\CommentTok{# (JNR school leaving results- 310), family}
+\CommentTok{# criminality(parents criminal record 300,}
+\CommentTok{# older siblings deliquency 301), poverty}
+\CommentTok{# (income of family 92, SES 138, Adversity mom}
+\CommentTok{# 46, Adversity father 45) and poor parental}
+\CommentTok{# child-rearing behaviour (attitude mom}
+\CommentTok{# combine 179, attitude dad combined 178,}
+\CommentTok{# discipline quality father 62, discipline}
+\CommentTok{# quality mom 63 and disagreement of parents}
+\CommentTok{# 196). ALso selected the id variable (4)as we}
+\CommentTok{# will need it for combining our datasets}
+
+\NormalTok{delinquency2 <-}\StringTok{ }\NormalTok{delinquency }\OperatorTok{%>%}\StringTok{ }\KeywordTok{select}\NormalTok{(v4, v30, }
+\NormalTok{    v37, v54, v62, v63, v121, v310, v300, v301, }
+\NormalTok{    v92, v138, v46, v45, v179, v178, v62, v63, }
+\NormalTok{    v196)}
+
+\CommentTok{# now I rename the variables}
+\NormalTok{delinquency2 }\OperatorTok{%<>%}\StringTok{ }\KeywordTok{rename}\NormalTok{(}\DataTypeTok{icpsr_seq_id_number =}\NormalTok{ v4, }
+    \DataTypeTok{number_of_convictions =}\NormalTok{ v30, }\DataTypeTok{adult_con =}\NormalTok{ v37, }
+    \DataTypeTok{comb_conductdisorder =}\NormalTok{ v54, }\DataTypeTok{impulsivity =}\NormalTok{ v121, }
+    \DataTypeTok{attainment =}\NormalTok{ v310, }\DataTypeTok{crimrecord_parents =}\NormalTok{ v300, }
+    \DataTypeTok{deliq_oldersiblings =}\NormalTok{ v301, }\DataTypeTok{income_family =}\NormalTok{ v92, }
+    \DataTypeTok{SES_family =}\NormalTok{ v138, }\DataTypeTok{adversity_mom =}\NormalTok{ v46, }\DataTypeTok{adversity_dad =}\NormalTok{ v45, }
+    \DataTypeTok{attitude_mom_combined =}\NormalTok{ v179, }\DataTypeTok{attitude_dad_combined =}\NormalTok{ v178, }
+    \DataTypeTok{discipln_qaulity_dad =}\NormalTok{ v62, }\DataTypeTok{discipln_qaulity_mom =}\NormalTok{ v63, }
+    \DataTypeTok{disagreement_par =}\NormalTok{ v196)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#now we convert the conviction dataset to wide format before merging the two datasets}
+\NormalTok{conviction_wide <-}\StringTok{ }\KeywordTok{spread}\NormalTok{(conviction, agecat, convicted)}
+\NormalTok{conviction_wide }\OperatorTok{%<>%}\StringTok{ }\CommentTok{#changing th evariables except id number to factors}
+\StringTok{  }\KeywordTok{mutate_if}\NormalTok{(}\KeywordTok{sapply}\NormalTok{(conviction_wide, is.numeric), as.factor) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{icpsr_seq_id_number =} \KeywordTok{as.numeric}\NormalTok{(icpsr_seq_id_number)) }\CommentTok{#need it as numeric to enable the merge}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# now we combine the two datasets, our key is}
+\CommentTok{# id}
+\NormalTok{combined_data <-}\StringTok{ }\KeywordTok{left_join}\NormalTok{(delinquency2, conviction_wide, }
+    \DataTypeTok{icpsr_seq_id_number =}\NormalTok{ key)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Joining, by = "icpsr_seq_id_number"
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: Column `icpsr_seq_id_number` has
+## different attributes on LHS and RHS of join
+\end{verbatim}
+
+Question 2 Explore the data set, bearing in mind that our key question
+concerns what the early life determinants of criminality are. What is
+worth exploring further, do you think? Report several (but not too
+many!) graphs and tables -- choose these prudently, and discuss each
+graph or table you include.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# now we do some data expolaration}
+\KeywordTok{str}\NormalTok{(combined_data)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Classes 'tbl_df', 'tbl' and 'data.frame':    411 obs. of  24 variables:
+##  $ icpsr_seq_id_number  : num  1 2 3 4 5 6 7 8 9 10 ...
+##   ..- attr(*, "label")= chr "ICPSR SEQ ID NUMBER"
+##   ..- attr(*, "format.spss")= chr "F3.0"
+##   ..- attr(*, "display_width")= int 5
+##  $ number_of_convictions: 'labelled' num  1 1 2 3 4 1 1 1 3 5 ...
+##   ..- attr(*, "label")= chr "NUMBER OF CONVICTIONS"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "display_width")= int 5
+##   ..- attr(*, "labels")= Named num  0 1 2 3 4 5 6
+##   .. ..- attr(*, "names")= chr  "NOT AT RISK" "NONE" "ONE" "TWO" ...
+##  $ adult_con            : 'labelled' num  1 1 1 2 4 1 1 1 2 5 ...
+##   ..- attr(*, "label")= chr "# ADULT CONVICTIONS"
+##   ..- attr(*, "format.spss")= chr "F2.0"
+##   ..- attr(*, "display_width")= int 5
+##   ..- attr(*, "labels")= Named num  0 1 2 3 4 5 6 7 8 10 ...
+##   .. ..- attr(*, "names")= chr  "NOT AT RISK" "NONE" "ONE" "TWO" ...
+##  $ comb_conductdisorder : 'labelled' num  1 2 4 2 1 2 2 1 2 2 ...
+##   ..- attr(*, "label")= chr "COMBND CONDUCT DISORDER"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "display_width")= int 5
+##   ..- attr(*, "labels")= Named num  1 2 3 4 5
+##   .. ..- attr(*, "names")= chr  "1" "2-3" "4-6" "7-8" ...
+##  $ discipln_qaulity_dad : 'labelled' num  1 NA 1 3 1 1 1 1 1 NA ...
+##   ..- attr(*, "label")= chr "DISCIPLINE QLTY - FATHER"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "display_width")= int 5
+##   ..- attr(*, "labels")= Named num  0 1 2 3 4 5
+##   .. ..- attr(*, "names")= chr  "NK-UNASCERTAIN" "NT SPL,HRSH,DISN" "SPOILT" "HARSH" ...
+##  $ discipln_qaulity_mom : 'labelled' num  2 1 1 3 1 1 1 1 1 1 ...
+##   ..- attr(*, "label")= chr "DISCIPLINE QLTY - MOTHER"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "display_width")= int 5
+##   ..- attr(*, "labels")= Named num  0 1 2 3 4 5
+##   .. ..- attr(*, "names")= chr  "NK-UNASCERTAIN" "NT SPL,HRSH,DISN" "SPOILT" "HARSH" ...
+##  $ impulsivity          : 'labelled' num  3 1 3 4 3 4 4 2 2 2 ...
+##   ..- attr(*, "label")= chr "PORTEUS-QUALITATIVE SCOR"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "display_width")= int 6
+##   ..- attr(*, "labels")= Named num  0 1 2 3 4
+##   .. ..- attr(*, "names")= chr  "NK-UNASCERTAIN" "0-22" "23-35" "36-52" ...
+##  $ attainment           : 'labelled' num  1 NA 3 3 4 3 4 1 3 1 ...
+##   ..- attr(*, "label")= chr "JR SCHL LEAVING RESULTS"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "display_width")= int 6
+##   ..- attr(*, "labels")= Named num  0 1 2 3 4
+##   .. ..- attr(*, "names")= chr  "NK-UNASCERTAIN" "HIGH" "HIGH AVERAGE" "LOW AVERAGE" ...
+##  $ crimrecord_parents   : 'labelled' num  6 1 3 3 1 1 1 1 4 1 ...
+##   ..- attr(*, "label")= chr "CRIMINAL RECORD-PARENTS"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "display_width")= int 6
+##   ..- attr(*, "labels")= Named num  1 2 3 4 5 6
+##   .. ..- attr(*, "names")= chr  "NO OPER PARNT CNV" "PARENT CONV-JUV" "PAR CONVICTED 1X" "P CONV 2X ADULT" ...
+##  $ deliq_oldersiblings  : 'labelled' num  1 1 1 1 1 1 1 1 1 1 ...
+##   ..- attr(*, "label")= chr "DELINQ OLDER SIBLINGS"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "display_width")= int 6
+##   ..- attr(*, "labels")= Named num  1 2
+##   .. ..- attr(*, "names")= chr  "NO OLDR SIB CONV" "OLDR SIBLNG CONV"
+##  $ income_family        : 'labelled' num  1 2 2 3 2 3 2 1 2 2 ...
+##   ..- attr(*, "label")= chr "INCOME OF FAMILY"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "display_width")= int 5
+##   ..- attr(*, "labels")= Named num  1 2 3
+##   .. ..- attr(*, "names")= chr  "COMFORTABLE" "ADEQUATE" "INADEQUATE"
+##  $ SES_family           : 'labelled' num  3 5 3 3 3 3 3 3 6 4 ...
+##   ..- attr(*, "label")= chr "SOCIOECON STATUS- FAMILY"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "display_width")= int 6
+##   ..- attr(*, "labels")= Named num  1 2 3 4 5 6
+##   .. ..- attr(*, "names")= chr  "II NON-MANUAL" "III NON-MANUAL" "III MANUAL" "IV NON-MANUAL" ...
+##  $ adversity_mom        : 'labelled' num  1 2 1 2 2 1 2 1 1 2 ...
+##   ..- attr(*, "label")= chr "BKGND ADVERSITY - MOTHER"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "display_width")= int 5
+##   ..- attr(*, "labels")= Named num  0 1 2 3
+##   .. ..- attr(*, "names")= chr  "NK-UNASCERTAIN" "NO ADVERSITY" "ADVERSITY" "NOT APPLICABLE"
+##  $ adversity_dad        : 'labelled' num  2 NA NA 1 1 1 1 1 1 NA ...
+##   ..- attr(*, "label")= chr "BKGND ADVERSITY - FATHER"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "display_width")= int 5
+##   ..- attr(*, "labels")= Named num  0 1 2 3
+##   .. ..- attr(*, "names")= chr  "NK-UNASCERTAIN" "NO ADVERSITY" "ADVERSITY" "NOT APPLICABLE"
+##  $ attitude_mom_combined: 'labelled' num  2 2 3 4 1 1 1 2 2 2 ...
+##   ..- attr(*, "label")= chr "ATTITUDE-MOTHER COMBINED"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "display_width")= int 6
+##   ..- attr(*, "labels")= Named num  0 1 2 3 4
+##   .. ..- attr(*, "names")= chr  "NK-UNASCERTAIN" "GOOD" "GOOD AVERAGE" "POOR AVERAGE" ...
+##  $ attitude_dad_combined: 'labelled' num  2 NA 1 4 2 1 2 2 2 NA ...
+##   ..- attr(*, "label")= chr "ATTITUDE-FATHER COMBINED"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "display_width")= int 6
+##   ..- attr(*, "labels")= Named num  0 1 2 3 4
+##   .. ..- attr(*, "names")= chr  "NK-UNASCERTAIN" "GOOD" "GOOD AVERAGE" "POOR AVERAGE" ...
+##  $ disagreement_par     : 'labelled' num  2 NA 2 3 2 1 2 2 2 NA ...
+##   ..- attr(*, "label")= chr "DISAGREEMENT - PARENTS"
+##   ..- attr(*, "format.spss")= chr "F1.0"
+##   ..- attr(*, "display_width")= int 6
+##   ..- attr(*, "labels")= Named num  0 1 2 3 4
+##   .. ..- attr(*, "names")= chr  "NK-UNASCERTAIN" "LOW" "LOW AVERAGE" "HIGH AVERAGE" ...
+##  $ convicted_10_13      : Factor w/ 2 levels "1","2": 1 1 1 1 1 1 1 1 2 1 ...
+##  $ convicted_10_24      : Factor w/ 2 levels "1","2": 1 1 2 2 2 1 1 1 2 2 ...
+##  $ convicted_14_16      : Factor w/ 2 levels "1","2": 1 1 2 2 1 1 1 1 1 1 ...
+##  $ convicted_17_20      : Factor w/ 2 levels "1","2": 1 1 1 2 2 1 1 1 2 2 ...
+##  $ convicted_21_24      : Factor w/ 2 levels "1","2": 1 1 1 1 2 1 1 1 1 2 ...
+##  $ convicted_as_adult   : Factor w/ 2 levels "1","2": 1 1 1 2 2 1 1 1 2 2 ...
+##  $ convicted_as_juvenile: Factor w/ 2 levels "1","2": 1 1 2 2 1 1 1 1 2 1 ...
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# we can see that a lot of our variables are}
+\CommentTok{# coded as characters when they are in fact}
+\CommentTok{# factors, we need to mutate them before we}
+\CommentTok{# can do any further explorations}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#changing the variable by looking at their descriptions in the codebook}
+\NormalTok{combined_data_mut <-}\StringTok{ }\NormalTok{combined_data}\OperatorTok{%<>%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate_if}\NormalTok{(}\KeywordTok{sapply}\NormalTok{(combined_data, is.numeric), as.factor) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{impulsivity =} \KeywordTok{as.numeric}\NormalTok{(impulsivity)) }\OperatorTok{%>%}\StringTok{ }\CommentTok{#the qualitative scores on the porteus maze test were broken down into 4 consecutive levels- the 4th is the highest score(impulsivity)}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{disagreement_par =} \KeywordTok{as.numeric}\NormalTok{(disagreement_par)) }\OperatorTok{%>%}\StringTok{ }\CommentTok{#disagreement also has 4 consecutive levels, 4th is the highest (parental disagreement)}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{icpsr_seq_id_number =} \KeywordTok{as.character}\NormalTok{(icpsr_seq_id_number)) }\OperatorTok{%>%}\StringTok{  }\CommentTok{#prefer to make id a character}
+\StringTok{  }\CommentTok{# the following variables have consecutive levels and better represented as numeric}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{number_of_convictions =} \KeywordTok{as.numeric}\NormalTok{(number_of_convictions)) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{comb_conductdisorder =} \KeywordTok{as.numeric}\NormalTok{(comb_conductdisorder)) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{SES_family =} \KeywordTok{as.numeric}\NormalTok{(SES_family)) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{crimrecord_parents =} \KeywordTok{as.numeric}\NormalTok{(crimrecord_parents))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# now we can check some summary statistics}
+\NormalTok{combined_data_mut }\OperatorTok{%>%}\StringTok{ }\KeywordTok{select}\NormalTok{(impulsivity, disagreement_par, }
+\NormalTok{    number_of_convictions, comb_conductdisorder, }
+\NormalTok{    SES_family, attainment) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{describeBy}\NormalTok{(}\DataTypeTok{group =}\NormalTok{ combined_data_mut}\OperatorTok{$}\NormalTok{number_of_convictions, }
+    \DataTypeTok{mat =}\NormalTok{ T)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                        item group1 vars   n
+## impulsivity1              1      1    1 261
+## impulsivity2              2      2    1  49
+## impulsivity3              3      3    1  21
+## impulsivity4              4      4    1  19
+## impulsivity5              5      5    1  20
+## impulsivity6              6      6    1  23
+## disagreement_par1         7      1    2 251
+## disagreement_par2         8      2    2  46
+## disagreement_par3         9      3    2  19
+## disagreement_par4        10      4    2  15
+## disagreement_par5        11      5    2  16
+## disagreement_par6        12      6    2  21
+## number_of_convictions1   13      1    3 265
+## number_of_convictions2   14      2    3  49
+## number_of_convictions3   15      3    3  21
+## number_of_convictions4   16      4    3  19
+## number_of_convictions5   17      5    3  20
+## number_of_convictions6   18      6    3  23
+## comb_conductdisorder1    19      1    4 265
+## comb_conductdisorder2    20      2    4  49
+## comb_conductdisorder3    21      3    4  21
+## comb_conductdisorder4    22      4    4  19
+## comb_conductdisorder5    23      5    4  20
+## comb_conductdisorder6    24      6    4  23
+## SES_family1              25      1    5 265
+## SES_family2              26      2    5  49
+## SES_family3              27      3    5  21
+## SES_family4              28      4    5  19
+## SES_family5              29      5    5  20
+## SES_family6              30      6    5  23
+## attainment*1             31      1    6 250
+## attainment*2             32      2    6  44
+## attainment*3             33      3    6  21
+## attainment*4             34      4    6  18
+## attainment*5             35      5    6  19
+## attainment*6             36      6    6  21
+##                            mean        sd
+## impulsivity1           2.402299 1.0932637
+## impulsivity2           2.571429 1.2747549
+## impulsivity3           1.904762 1.0910895
+## impulsivity4           2.842105 0.9581903
+## impulsivity5           2.600000 1.0462967
+## impulsivity6           3.173913 0.7776523
+## disagreement_par1      1.948207 1.0086163
+## disagreement_par2      1.978261 1.0643544
+## disagreement_par3      2.473684 1.2635233
+## disagreement_par4      2.533333 1.0600988
+## disagreement_par5      2.750000 1.2909944
+## disagreement_par6      2.619048 1.1608700
+## number_of_convictions1 1.000000 0.0000000
+## number_of_convictions2 2.000000 0.0000000
+## number_of_convictions3 3.000000 0.0000000
+## number_of_convictions4 4.000000 0.0000000
+## number_of_convictions5 5.000000 0.0000000
+## number_of_convictions6 6.000000 0.0000000
+## comb_conductdisorder1  2.320755 1.0403522
+## comb_conductdisorder2  2.551020 1.1004019
+## comb_conductdisorder3  2.904762 1.1359913
+## comb_conductdisorder4  3.000000 1.3743685
+## comb_conductdisorder5  3.050000 0.9986833
+## comb_conductdisorder6  3.652174 1.2652235
+## SES_family1            3.667925 1.4338671
+## SES_family2            3.204082 1.3536924
+## SES_family3            3.714286 1.4880476
+## SES_family4            3.473684 1.0202626
+## SES_family5            4.250000 1.6503588
+## SES_family6            4.217391 1.5942089
+## attainment*1           2.328000 1.1033065
+## attainment*2           2.545455 1.0219577
+## attainment*3           2.619048 1.2440334
+## attainment*4           2.944444 0.9983647
+## attainment*5           3.263158 0.8719139
+## attainment*6           3.380952 1.0235326
+##                        median  trimmed
+## impulsivity1              2.0 2.377990
+## impulsivity2              3.0 2.585366
+## impulsivity3              2.0 1.764706
+## impulsivity4              3.0 2.882353
+## impulsivity5              2.5 2.625000
+## impulsivity6              3.0 3.210526
+## disagreement_par1         2.0 1.810945
+## disagreement_par2         2.0 1.868421
+## disagreement_par3         2.0 2.470588
+## disagreement_par4         3.0 2.538462
+## disagreement_par5         3.0 2.785714
+## disagreement_par6         3.0 2.647059
+## number_of_convictions1    1.0 1.000000
+## number_of_convictions2    2.0 2.000000
+## number_of_convictions3    3.0 3.000000
+## number_of_convictions4    4.0 4.000000
+## number_of_convictions5    5.0 5.000000
+## number_of_convictions6    6.0 6.000000
+## comb_conductdisorder1     2.0 2.225352
+## comb_conductdisorder2     2.0 2.487805
+## comb_conductdisorder3     3.0 2.882353
+## comb_conductdisorder4     3.0 3.000000
+## comb_conductdisorder5     3.0 3.000000
+## comb_conductdisorder6     4.0 3.736842
+## SES_family1               3.0 3.661972
+## SES_family2               3.0 3.146341
+## SES_family3               3.0 3.764706
+## SES_family4               3.0 3.411765
+## SES_family5               5.0 4.437500
+## SES_family6               4.0 4.315789
+## attainment*1              2.0 2.285000
+## attainment*2              3.0 2.555556
+## attainment*3              3.0 2.647059
+## attainment*4              3.0 3.000000
+## attainment*5              3.0 3.352941
+## attainment*6              4.0 3.588235
+##                           mad min max range
+## impulsivity1           1.4826   1   4     3
+## impulsivity2           1.4826   1   4     3
+## impulsivity3           1.4826   1   4     3
+## impulsivity4           1.4826   1   4     3
+## impulsivity5           0.7413   1   4     3
+## impulsivity6           1.4826   2   4     2
+## disagreement_par1      1.4826   1   4     3
+## disagreement_par2      1.4826   1   4     3
+## disagreement_par3      1.4826   1   4     3
+## disagreement_par4      1.4826   1   4     3
+## disagreement_par5      1.4826   1   4     3
+## disagreement_par6      1.4826   1   4     3
+## number_of_convictions1 0.0000   1   1     0
+## number_of_convictions2 0.0000   2   2     0
+## number_of_convictions3 0.0000   3   3     0
+## number_of_convictions4 0.0000   4   4     0
+## number_of_convictions5 0.0000   5   5     0
+## number_of_convictions6 0.0000   6   6     0
+## comb_conductdisorder1  1.4826   1   5     4
+## comb_conductdisorder2  1.4826   1   5     4
+## comb_conductdisorder3  1.4826   1   5     4
+## comb_conductdisorder4  1.4826   1   5     4
+## comb_conductdisorder5  1.4826   2   5     3
+## comb_conductdisorder6  1.4826   1   5     4
+## SES_family1            1.4826   1   6     5
+## SES_family2            0.0000   1   6     5
+## SES_family3            0.0000   1   6     5
+## SES_family4            0.0000   2   6     4
+## SES_family5            1.4826   1   6     5
+## SES_family6            1.4826   1   6     5
+## attainment*1           1.4826   1   4     3
+## attainment*2           1.4826   1   4     3
+## attainment*3           1.4826   1   4     3
+## attainment*4           1.4826   1   4     3
+## attainment*5           1.4826   1   4     3
+## attainment*6           0.0000   1   4     3
+##                               skew
+## impulsivity1            0.12594373
+## impulsivity2           -0.12666842
+## impulsivity3            0.83662661
+## impulsivity4           -0.06562647
+## impulsivity5            0.01047651
+## impulsivity6           -0.28312299
+## disagreement_par1       0.75541144
+## disagreement_par2       0.79915965
+## disagreement_par3       0.05594102
+## disagreement_par4      -0.08107832
+## disagreement_par5      -0.26142638
+## disagreement_par6      -0.18373820
+## number_of_convictions1         NaN
+## number_of_convictions2         NaN
+## number_of_convictions3         NaN
+## number_of_convictions4         NaN
+## number_of_convictions5         NaN
+## number_of_convictions6         NaN
+## comb_conductdisorder1   0.72153938
+## comb_conductdisorder2   0.56244311
+## comb_conductdisorder3   0.17515759
+## comb_conductdisorder4   0.12164325
+## comb_conductdisorder5   0.20857277
+## comb_conductdisorder6  -0.39249220
+## SES_family1             0.25400479
+## SES_family2             0.52431750
+## SES_family3             0.03539284
+## SES_family4             1.10783962
+## SES_family5            -0.51306366
+## SES_family6            -0.14702764
+## attainment*1            0.11592750
+## attainment*2           -0.05596163
+## attainment*3           -0.18463152
+## attainment*4           -0.56793949
+## attainment*5           -0.96468819
+## attainment*6           -1.29260772
+##                           kurtosis
+## impulsivity1           -1.29618358
+## impulsivity2           -1.69119622
+## impulsivity3           -0.73548844
+## impulsivity4           -1.38768082
+## impulsivity5           -1.33518121
+## impulsivity6           -1.37186803
+## disagreement_par1      -0.58545320
+## disagreement_par2      -0.65034387
+## disagreement_par3      -1.73430317
+## disagreement_par4      -1.36225606
+## disagreement_par5      -1.74984375
+## disagreement_par6      -1.50827519
+## number_of_convictions1         NaN
+## number_of_convictions2         NaN
+## number_of_convictions3         NaN
+## number_of_convictions4         NaN
+## number_of_convictions5         NaN
+## number_of_convictions6         NaN
+## comb_conductdisorder1   0.05887175
+## comb_conductdisorder2  -0.47152869
+## comb_conductdisorder3  -0.86549006
+## comb_conductdisorder4  -1.25933345
+## comb_conductdisorder5  -1.49787322
+## comb_conductdisorder6  -1.19028848
+## SES_family1            -0.86349873
+## SES_family2            -0.27783840
+## SES_family3            -0.98990564
+## SES_family4             0.03402890
+## SES_family5            -1.00739778
+## SES_family6            -1.43157787
+## attainment*1           -1.35769870
+## attainment*2           -1.17328291
+## attainment*3           -1.66333696
+## attainment*4           -0.85123364
+## attainment*5            0.09730171
+## attainment*6            0.19626694
+##                                se
+## impulsivity1           0.06767132
+## impulsivity2           0.18210784
+## impulsivity3           0.23809524
+## impulsivity4           0.21982393
+## impulsivity5           0.23395906
+## impulsivity6           0.16215171
+## disagreement_par1      0.06366329
+## disagreement_par2      0.15693049
+## disagreement_par3      0.28987213
+## disagreement_par4      0.27371634
+## disagreement_par5      0.32274861
+## disagreement_par6      0.25332259
+## number_of_convictions1 0.00000000
+## number_of_convictions2 0.00000000
+## number_of_convictions3 0.00000000
+## number_of_convictions4 0.00000000
+## number_of_convictions5 0.00000000
+## number_of_convictions6 0.00000000
+## comb_conductdisorder1  0.06390833
+## comb_conductdisorder2  0.15720027
+## comb_conductdisorder3  0.24789362
+## comb_conductdisorder4  0.31530177
+## comb_conductdisorder5  0.22331238
+## comb_conductdisorder6  0.26381734
+## SES_family1            0.08808176
+## SES_family2            0.19338462
+## SES_family3            0.32471861
+## SES_family4            0.23406428
+## SES_family5            0.36903145
+## SES_family6            0.33241553
+## attainment*1           0.06977923
+## attainment*2           0.15406591
+## attainment*3           0.27147034
+## attainment*4           0.23531681
+## attainment*5           0.20003078
+## attainment*6           0.22335313
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# we can see here that higher convictions (6}
+\CommentTok{# or more) are associated with a higher}
+\CommentTok{# impulsivity score. We can also see that as}
+\CommentTok{# the convictions increase in mean, the}
+\CommentTok{# disagreement between parents also generall}
+\CommentTok{# increases, this pattern is also seen with}
+\CommentTok{# conduct disorder reports, where higher}
+\CommentTok{# convictions are assocaited with higher}
+\CommentTok{# combined conduct disorder scores. we can see}
+\CommentTok{# a similar pattern with SES where the lower}
+\CommentTok{# the class of parents, the higher the}
+\CommentTok{# convictions.}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{combined_data_mut }\OperatorTok{%>%}\StringTok{ }\KeywordTok{select}\NormalTok{(crimrecord_parents, }
+\NormalTok{    deliq_oldersiblings, number_of_convictions, }
+\NormalTok{    convicted_10_}\DecValTok{13}\NormalTok{, convicted_10_}\DecValTok{24}\NormalTok{, convicted_14_}\DecValTok{16}\NormalTok{, }
+\NormalTok{    convicted_17_}\DecValTok{20}\NormalTok{, convicted_as_adult, convicted_as_juvenile) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{    }\KeywordTok{describeBy}\NormalTok{(}\DataTypeTok{group =}\NormalTok{ combined_data_mut}\OperatorTok{$}\NormalTok{number_of_convictions, }
+        \DataTypeTok{mat =}\NormalTok{ T)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                         item group1 vars   n
+## crimrecord_parents1        1      1    1 265
+## crimrecord_parents2        2      2    1  49
+## crimrecord_parents3        3      3    1  21
+## crimrecord_parents4        4      4    1  19
+## crimrecord_parents5        5      5    1  20
+## crimrecord_parents6        6      6    1  23
+## deliq_oldersiblings*1      7      1    2 265
+## deliq_oldersiblings*2      8      2    2  49
+## deliq_oldersiblings*3      9      3    2  21
+## deliq_oldersiblings*4     10      4    2  19
+## deliq_oldersiblings*5     11      5    2  20
+## deliq_oldersiblings*6     12      6    2  23
+## number_of_convictions1    13      1    3 265
+## number_of_convictions2    14      2    3  49
+## number_of_convictions3    15      3    3  21
+## number_of_convictions4    16      4    3  19
+## number_of_convictions5    17      5    3  20
+## number_of_convictions6    18      6    3  23
+## convicted_10_13*1         19      1    4 265
+## convicted_10_13*2         20      2    4  49
+## convicted_10_13*3         21      3    4  21
+## convicted_10_13*4         22      4    4  19
+## convicted_10_13*5         23      5    4  20
+## convicted_10_13*6         24      6    4  23
+## convicted_10_24*1         25      1    5 265
+## convicted_10_24*2         26      2    5  49
+## convicted_10_24*3         27      3    5  21
+## convicted_10_24*4         28      4    5  19
+## convicted_10_24*5         29      5    5  20
+## convicted_10_24*6         30      6    5  23
+## convicted_14_16*1         31      1    6 265
+## convicted_14_16*2         32      2    6  49
+## convicted_14_16*3         33      3    6  21
+## convicted_14_16*4         34      4    6  19
+## convicted_14_16*5         35      5    6  20
+## convicted_14_16*6         36      6    6  23
+## convicted_17_20*1         37      1    7 265
+## convicted_17_20*2         38      2    7  49
+## convicted_17_20*3         39      3    7  21
+## convicted_17_20*4         40      4    7  19
+## convicted_17_20*5         41      5    7  20
+## convicted_17_20*6         42      6    7  23
+## convicted_as_adult*1      43      1    8 265
+## convicted_as_adult*2      44      2    8  49
+## convicted_as_adult*3      45      3    8  21
+## convicted_as_adult*4      46      4    8  19
+## convicted_as_adult*5      47      5    8  20
+## convicted_as_adult*6      48      6    8  23
+## convicted_as_juvenile*1   49      1    9 265
+## convicted_as_juvenile*2   50      2    9  49
+## convicted_as_juvenile*3   51      3    9  21
+## convicted_as_juvenile*4   52      4    9  19
+## convicted_as_juvenile*5   53      5    9  20
+## convicted_as_juvenile*6   54      6    9  23
+##                             mean        sd
+## crimrecord_parents1     1.445283 1.0579007
+## crimrecord_parents2     1.836735 1.5457865
+## crimrecord_parents3     2.380952 1.4654757
+## crimrecord_parents4     1.894737 1.5949482
+## crimrecord_parents5     2.750000 1.7434086
+## crimrecord_parents6     2.695652 1.9871126
+## deliq_oldersiblings*1   1.071698 0.2584755
+## deliq_oldersiblings*2   1.122449 0.3312007
+## deliq_oldersiblings*3   1.095238 0.3007926
+## deliq_oldersiblings*4   1.210526 0.4188539
+## deliq_oldersiblings*5   1.200000 0.4103913
+## deliq_oldersiblings*6   1.391304 0.4990109
+## number_of_convictions1  1.000000 0.0000000
+## number_of_convictions2  2.000000 0.0000000
+## number_of_convictions3  3.000000 0.0000000
+## number_of_convictions4  4.000000 0.0000000
+## number_of_convictions5  5.000000 0.0000000
+## number_of_convictions6  6.000000 0.0000000
+## convicted_10_13*1       1.000000 0.0000000
+## convicted_10_13*2       1.081633 0.2766417
+## convicted_10_13*3       1.142857 0.3585686
+## convicted_10_13*4       1.315789 0.4775669
+## convicted_10_13*5       1.350000 0.4893605
+## convicted_10_13*6       1.608696 0.4990109
+## convicted_10_24*1       1.000000 0.0000000
+## convicted_10_24*2       2.000000 0.0000000
+## convicted_10_24*3       2.000000 0.0000000
+## convicted_10_24*4       2.000000 0.0000000
+## convicted_10_24*5       2.000000 0.0000000
+## convicted_10_24*6       2.000000 0.0000000
+## convicted_14_16*1       1.000000 0.0000000
+## convicted_14_16*2       1.244898 0.4344830
+## convicted_14_16*3       1.523810 0.5117663
+## convicted_14_16*4       1.684211 0.4775669
+## convicted_14_16*5       1.550000 0.5104178
+## convicted_14_16*6       2.000000 0.0000000
+## convicted_17_20*1       1.000000 0.0000000
+## convicted_17_20*2       1.530612 0.5042338
+## convicted_17_20*3       1.714286 0.4629100
+## convicted_17_20*4       1.736842 0.4524139
+## convicted_17_20*5       1.850000 0.3663475
+## convicted_17_20*6       1.956522 0.2085144
+## convicted_as_adult*1    1.000000 0.0000000
+## convicted_as_adult*2    1.673469 0.4738035
+## convicted_as_adult*3    1.857143 0.3585686
+## convicted_as_adult*4    1.842105 0.3746343
+## convicted_as_adult*5    2.000000 0.0000000
+## convicted_as_adult*6    1.956522 0.2085144
+## convicted_as_juvenile*1 1.000000 0.0000000
+## convicted_as_juvenile*2 1.326531 0.4738035
+## convicted_as_juvenile*3 1.619048 0.4976134
+## convicted_as_juvenile*4 1.789474 0.4188539
+## convicted_as_juvenile*5 1.650000 0.4893605
+## convicted_as_juvenile*6 2.000000 0.0000000
+##                         median  trimmed
+## crimrecord_parents1          1 1.173709
+## crimrecord_parents2          1 1.512195
+## crimrecord_parents3          2 2.235294
+## crimrecord_parents4          1 1.705882
+## crimrecord_parents5          3 2.562500
+## crimrecord_parents6          2 2.526316
+## deliq_oldersiblings*1        1 1.000000
+## deliq_oldersiblings*2        1 1.048780
+## deliq_oldersiblings*3        1 1.000000
+## deliq_oldersiblings*4        1 1.176471
+## deliq_oldersiblings*5        1 1.125000
+## deliq_oldersiblings*6        1 1.368421
+## number_of_convictions1       1 1.000000
+## number_of_convictions2       2 2.000000
+## number_of_convictions3       3 3.000000
+## number_of_convictions4       4 4.000000
+## number_of_convictions5       5 5.000000
+## number_of_convictions6       6 6.000000
+## convicted_10_13*1            1 1.000000
+## convicted_10_13*2            1 1.000000
+## convicted_10_13*3            1 1.058824
+## convicted_10_13*4            1 1.294118
+## convicted_10_13*5            1 1.312500
+## convicted_10_13*6            2 1.631579
+## convicted_10_24*1            1 1.000000
+## convicted_10_24*2            2 2.000000
+## convicted_10_24*3            2 2.000000
+## convicted_10_24*4            2 2.000000
+## convicted_10_24*5            2 2.000000
+## convicted_10_24*6            2 2.000000
+## convicted_14_16*1            1 1.000000
+## convicted_14_16*2            1 1.195122
+## convicted_14_16*3            2 1.529412
+## convicted_14_16*4            2 1.705882
+## convicted_14_16*5            2 1.562500
+## convicted_14_16*6            2 2.000000
+## convicted_17_20*1            1 1.000000
+## convicted_17_20*2            2 1.536585
+## convicted_17_20*3            2 1.764706
+## convicted_17_20*4            2 1.764706
+## convicted_17_20*5            2 1.937500
+## convicted_17_20*6            2 2.000000
+## convicted_as_adult*1         1 1.000000
+## convicted_as_adult*2         2 1.707317
+## convicted_as_adult*3         2 1.941176
+## convicted_as_adult*4         2 1.882353
+## convicted_as_adult*5         2 2.000000
+## convicted_as_adult*6         2 2.000000
+## convicted_as_juvenile*1      1 1.000000
+## convicted_as_juvenile*2      1 1.292683
+## convicted_as_juvenile*3      2 1.647059
+## convicted_as_juvenile*4      2 1.823529
+## convicted_as_juvenile*5      2 1.687500
+## convicted_as_juvenile*6      2 2.000000
+##                            mad min max range
+## crimrecord_parents1     0.0000   1   6     5
+## crimrecord_parents2     0.0000   1   6     5
+## crimrecord_parents3     1.4826   1   5     4
+## crimrecord_parents4     0.0000   1   6     5
+## crimrecord_parents5     2.9652   1   6     5
+## crimrecord_parents6     1.4826   1   6     5
+## deliq_oldersiblings*1   0.0000   1   2     1
+## deliq_oldersiblings*2   0.0000   1   2     1
+## deliq_oldersiblings*3   0.0000   1   2     1
+## deliq_oldersiblings*4   0.0000   1   2     1
+## deliq_oldersiblings*5   0.0000   1   2     1
+## deliq_oldersiblings*6   0.0000   1   2     1
+## number_of_convictions1  0.0000   1   1     0
+## number_of_convictions2  0.0000   2   2     0
+## number_of_convictions3  0.0000   3   3     0
+## number_of_convictions4  0.0000   4   4     0
+## number_of_convictions5  0.0000   5   5     0
+## number_of_convictions6  0.0000   6   6     0
+## convicted_10_13*1       0.0000   1   1     0
+## convicted_10_13*2       0.0000   1   2     1
+## convicted_10_13*3       0.0000   1   2     1
+## convicted_10_13*4       0.0000   1   2     1
+## convicted_10_13*5       0.0000   1   2     1
+## convicted_10_13*6       0.0000   1   2     1
+## convicted_10_24*1       0.0000   1   1     0
+## convicted_10_24*2       0.0000   2   2     0
+## convicted_10_24*3       0.0000   2   2     0
+## convicted_10_24*4       0.0000   2   2     0
+## convicted_10_24*5       0.0000   2   2     0
+## convicted_10_24*6       0.0000   2   2     0
+## convicted_14_16*1       0.0000   1   1     0
+## convicted_14_16*2       0.0000   1   2     1
+## convicted_14_16*3       0.0000   1   2     1
+## convicted_14_16*4       0.0000   1   2     1
+## convicted_14_16*5       0.0000   1   2     1
+## convicted_14_16*6       0.0000   2   2     0
+## convicted_17_20*1       0.0000   1   1     0
+## convicted_17_20*2       0.0000   1   2     1
+## convicted_17_20*3       0.0000   1   2     1
+## convicted_17_20*4       0.0000   1   2     1
+## convicted_17_20*5       0.0000   1   2     1
+## convicted_17_20*6       0.0000   1   2     1
+## convicted_as_adult*1    0.0000   1   1     0
+## convicted_as_adult*2    0.0000   1   2     1
+## convicted_as_adult*3    0.0000   1   2     1
+## convicted_as_adult*4    0.0000   1   2     1
+## convicted_as_adult*5    0.0000   2   2     0
+## convicted_as_adult*6    0.0000   1   2     1
+## convicted_as_juvenile*1 0.0000   1   1     0
+## convicted_as_juvenile*2 0.0000   1   2     1
+## convicted_as_juvenile*3 0.0000   1   2     1
+## convicted_as_juvenile*4 0.0000   1   2     1
+## convicted_as_juvenile*5 0.0000   1   2     1
+## convicted_as_juvenile*6 0.0000   2   2     0
+##                                skew
+## crimrecord_parents1      2.39019415
+## crimrecord_parents2      1.72604582
+## crimrecord_parents3      0.54091343
+## crimrecord_parents4      1.71855540
+## crimrecord_parents5      0.42106646
+## crimrecord_parents6      0.60379301
+## deliq_oldersiblings*1    3.30155535
+## deliq_oldersiblings*2    2.23336449
+## deliq_oldersiblings*3    2.56314499
+## deliq_oldersiblings*4    1.30946959
+## deliq_oldersiblings*5    1.38891819
+## deliq_oldersiblings*6    0.41670336
+## number_of_convictions1          NaN
+## number_of_convictions2          NaN
+## number_of_convictions3          NaN
+## number_of_convictions4          NaN
+## number_of_convictions5          NaN
+## number_of_convictions6          NaN
+## convicted_10_13*1               NaN
+## convicted_10_13*2        2.96288872
+## convicted_10_13*3        1.89718827
+## convicted_10_13*4        0.73085142
+## convicted_10_13*5        0.58239275
+## convicted_10_13*6       -0.41670336
+## convicted_10_24*1               NaN
+## convicted_10_24*2               NaN
+## convicted_10_24*3               NaN
+## convicted_10_24*4               NaN
+## convicted_10_24*5               NaN
+## convicted_10_24*6               NaN
+## convicted_14_16*1               NaN
+## convicted_14_16*2        1.15031361
+## convicted_14_16*3       -0.08861754
+## convicted_14_16*4       -0.73085142
+## convicted_14_16*5       -0.18612204
+## convicted_14_16*6               NaN
+## convicted_17_20*1               NaN
+## convicted_17_20*2       -0.11894287
+## convicted_17_20*3       -0.88173343
+## convicted_17_20*4       -0.99190903
+## convicted_17_20*5       -1.81521619
+## convicted_17_20*6       -4.18841997
+## convicted_as_adult*1            NaN
+## convicted_as_adult*2    -0.71729813
+## convicted_as_adult*3    -1.89718827
+## convicted_as_adult*4    -1.73021905
+## convicted_as_adult*5            NaN
+## convicted_as_adult*6    -4.18841997
+## convicted_as_juvenile*1         NaN
+## convicted_as_juvenile*2  0.71729813
+## convicted_as_juvenile*3 -0.45568988
+## convicted_as_juvenile*4 -1.30946959
+## convicted_as_juvenile*5 -0.58239275
+## convicted_as_juvenile*6         NaN
+##                           kurtosis
+## crimrecord_parents1      5.0454169
+## crimrecord_parents2      1.7669629
+## crimrecord_parents3     -1.1242575
+## crimrecord_parents4      1.7069560
+## crimrecord_parents5     -1.1929197
+## crimrecord_parents6     -1.3124232
+## deliq_oldersiblings*1    8.9340237
+## deliq_oldersiblings*2    3.0514321
+## deliq_oldersiblings*3    4.8052274
+## deliq_oldersiblings*4   -0.2925208
+## deliq_oldersiblings*5   -0.0668750
+## deliq_oldersiblings*6   -1.9035317
+## number_of_convictions1         NaN
+## number_of_convictions2         NaN
+## number_of_convictions3         NaN
+## number_of_convictions4         NaN
+## number_of_convictions5         NaN
+## number_of_convictions6         NaN
+## convicted_10_13*1              NaN
+## convicted_10_13*2        6.9211995
+## convicted_10_13*3        1.6863190
+## convicted_10_13*4       -1.5386746
+## convicted_10_13*5       -1.7404670
+## convicted_10_13*6       -1.9035317
+## convicted_10_24*1              NaN
+## convicted_10_24*2              NaN
+## convicted_10_24*3              NaN
+## convicted_10_24*4              NaN
+## convicted_10_24*5              NaN
+## convicted_10_24*6              NaN
+## convicted_14_16*1              NaN
+## convicted_14_16*2       -0.6896113
+## convicted_14_16*3       -2.0847248
+## convicted_14_16*4       -1.5386746
+## convicted_14_16*5       -2.0610354
+## convicted_14_16*6              NaN
+## convicted_17_20*1              NaN
+## convicted_17_20*2       -2.0259577
+## convicted_17_20*3       -1.2766440
+## convicted_17_20*4       -1.0639493
+## convicted_17_20*5        1.3709314
+## convicted_17_20*6       16.2551985
+## convicted_as_adult*1           NaN
+## convicted_as_adult*2    -1.5151641
+## convicted_as_adult*3     1.6863190
+## convicted_as_adult*4     1.0574792
+## convicted_as_adult*5           NaN
+## convicted_as_adult*6    16.2551985
+## convicted_as_juvenile*1        NaN
+## convicted_as_juvenile*2 -1.5151641
+## convicted_as_juvenile*3 -1.8749346
+## convicted_as_juvenile*4 -0.2925208
+## convicted_as_juvenile*5 -1.7404670
+## convicted_as_juvenile*6        NaN
+##                                 se
+## crimrecord_parents1     0.06498632
+## crimrecord_parents2     0.22082664
+## crimrecord_parents3     0.31979302
+## crimrecord_parents4     0.36590620
+## crimrecord_parents5     0.38983802
+## crimrecord_parents6     0.41434163
+## deliq_oldersiblings*1   0.01587803
+## deliq_oldersiblings*2   0.04731438
+## deliq_oldersiblings*3   0.06563833
+## deliq_oldersiblings*4   0.09609168
+## deliq_oldersiblings*5   0.09176629
+## deliq_oldersiblings*6   0.10405096
+## number_of_convictions1  0.00000000
+## number_of_convictions2  0.00000000
+## number_of_convictions3  0.00000000
+## number_of_convictions4  0.00000000
+## number_of_convictions5  0.00000000
+## number_of_convictions6  0.00000000
+## convicted_10_13*1       0.00000000
+## convicted_10_13*2       0.03952024
+## convicted_10_13*3       0.07824608
+## convicted_10_13*4       0.10956137
+## convicted_10_13*5       0.10942433
+## convicted_10_13*6       0.10405096
+## convicted_10_24*1       0.00000000
+## convicted_10_24*2       0.00000000
+## convicted_10_24*3       0.00000000
+## convicted_10_24*4       0.00000000
+## convicted_10_24*5       0.00000000
+## convicted_10_24*6       0.00000000
+## convicted_14_16*1       0.00000000
+## convicted_14_16*2       0.06206901
+## convicted_14_16*3       0.11167657
+## convicted_14_16*4       0.10956137
+## convicted_14_16*5       0.11413289
+## convicted_14_16*6       0.00000000
+## convicted_17_20*1       0.00000000
+## convicted_17_20*2       0.07203340
+## convicted_17_20*3       0.10101525
+## convicted_17_20*4       0.10379087
+## convicted_17_20*5       0.08191780
+## convicted_17_20*6       0.04347826
+## convicted_as_adult*1    0.00000000
+## convicted_as_adult*2    0.06768622
+## convicted_as_adult*3    0.07824608
+## convicted_as_adult*4    0.08594701
+## convicted_as_adult*5    0.00000000
+## convicted_as_adult*6    0.04347826
+## convicted_as_juvenile*1 0.00000000
+## convicted_as_juvenile*2 0.06768622
+## convicted_as_juvenile*3 0.10858814
+## convicted_as_juvenile*4 0.09609168
+## convicted_as_juvenile*5 0.10942433
+## convicted_as_juvenile*6 0.00000000
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# we can see here that as the number of}
+\CommentTok{# convictions increase we also see an increase}
+\CommentTok{# in other convictions, parental criminal}
+\CommentTok{# records and sibling deliquent behaviours, we}
+\CommentTok{# need to exlpore some of these variables as}
+\CommentTok{# tables as they are factors}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{table}
+
+\caption{\label{tab:tables}deliqeuncy siblings}
+\centering
+\begin{tabular}[t]{l|r}
+\hline
+Var1 & Freq\\
+\hline
+1 & 365\\
+\hline
+2 & 46\\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}
+
+\caption{\label{tab:tables}conv 10-13}
+\centering
+\begin{tabular}[t]{l|r}
+\hline
+Var1 & Freq\\
+\hline
+1 & 376\\
+\hline
+2 & 35\\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}
+
+\caption{\label{tab:tables}convicted 10-24}
+\centering
+\begin{tabular}[t]{l|r}
+\hline
+Var1 & Freq\\
+\hline
+1 & 265\\
+\hline
+2 & 136\\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{mosaic}\NormalTok{(}\OperatorTok{~}\NormalTok{deliq_oldersiblings }\OperatorTok{+}\StringTok{ }\NormalTok{convicted_10_}\DecValTok{13} \OperatorTok{+}\StringTok{ }
+\StringTok{    }\NormalTok{convicted_10_}\DecValTok{24}\NormalTok{, }\DataTypeTok{data =}\NormalTok{ combined_data_mut)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Test_1_files/figure-latex/unnamed-chunk-10-1}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{l|l|l|r|r|r|r|r|r|r|r|r|r|r|r|r|r|r}
+\hline
+deliq\_oldersiblings & convicted\_10\_13 & convicted\_10\_24 & number\_of\_convictions\_mean & comb\_conductdisorder\_mean & impulsivity\_mean & crimrecord\_parents\_mean & SES\_family\_mean & number\_of\_convictions\_sd & comb\_conductdisorder\_sd & impulsivity\_sd & crimrecord\_parents\_sd & SES\_family\_sd & number\_of\_convictions\_n & comb\_conductdisorder\_n & impulsivity\_n & crimrecord\_parents\_n & SES\_family\_n\\
+\hline
+1 & 1 & 1 & 1.000000 & 2.296296 & 2.370370 & 1.423868 & 3.637860 & 0.0000000 & 1.0378511 & 1.0921710 & 1.027195 & 1.449040 & 243 & 243 & 243 & 243 & 243\\
+\hline
+1 & 1 & 2 & 3.100000 & 2.762500 & 2.412500 & 2.087500 & 3.462500 & 1.3369150 & 1.1718616 & 1.1767123 & 1.511088 & 1.377429 & 80 & 80 & 80 & 80 & 80\\
+\hline
+1 & 2 & 2 & 4.407407 & 3.259259 & 2.740741 & 2.037037 & 3.592593 & 1.4212470 & 1.2585887 & 0.9026709 & 1.720498 & 1.715523 & 27 & 27 & 27 & 27 & 27\\
+\hline
+2 & 1 & 1 & 1.000000 & 2.611111 & 2.833333 & 1.666667 & 4.111111 & 0.0000000 & 1.0921586 & 1.0431852 & 1.371989 & 1.278275 & 18 & 18 & 18 & 18 & 18\\
+\hline
+2 & 1 & 2 & 3.722222 & 3.000000 & 2.888889 & 2.888889 & 4.222222 & 1.5264552 & 1.2833779 & 1.1826634 & 2.025975 & 1.308594 & 18 & 18 & 18 & 18 & 18\\
+\hline
+2 & 2 & 2 & 5.857143 & 3.571429 & 3.714286 & 2.714286 & 4.714286 & 0.3779645 & 0.9759001 & 0.7559289 & 2.214670 & 1.380131 & 7 & 7 & 7 & 7 & 7\\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# let's explore these relationships further}
+\CommentTok{# with graphs First I look at number of}
+\CommentTok{# convictions and SES and conduct behaviour}
+\KeywordTok{ggplot}\NormalTok{(combined_data_mut, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ number_of_convictions, }
+    \DataTypeTok{y =}\NormalTok{ SES_family)) }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{size =} \FloatTok{0.5}\NormalTok{, }
+    \DataTypeTok{alpha =} \DecValTok{1}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_smooth}\NormalTok{(}\DataTypeTok{method =} \StringTok{"lm"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{    }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\NormalTok{comb_conductdisorder) }\OperatorTok{+}\StringTok{ }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \StringTok{"Relationship between number of convictions and family SES"}\NormalTok{, }
+    \DataTypeTok{subtitle =} \StringTok{"Per conduct disorder behaviour(1-5)"}\NormalTok{, }
+    \DataTypeTok{x =} \StringTok{"total convictions (0 = no risk, 1 = none, 2 = one, 3 = two, 4 = three, 5 = 4/5, 6 = 6 &>"}\NormalTok{, }
+    \DataTypeTok{y =} \StringTok{"SES family"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: Removed 14 rows containing non-finite
+## values (stat_smooth).
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: Removed 14 rows containing missing values
+## (geom_point).
+\end{verbatim}
+
+\includegraphics{Test_1_files/figure-latex/unnamed-chunk-11-1}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# please note the following in terms of SES,}
+\CommentTok{# the values represent the following classes}
+\CommentTok{# 1. II NON-MANUAL, 2. III NON-MANUAL, 3. III}
+\CommentTok{# MANUAL, 4. IV NON-MANUAL, 5. IV MANUAL, 6. V}
+\CommentTok{# MANUAL (I Professional occupations,II}
+\CommentTok{# Managerial and technical occupations, IIIN}
+\CommentTok{# Skilled non-manual occupations, IIIM Skilled}
+\CommentTok{# manual occupations, IV Partly-skilled}
+\CommentTok{# occupations, V Unskilled occupations) we can}
+\CommentTok{# see that as the family SES descreseas}
+\CommentTok{# (determinsed by parental occupations), there}
+\CommentTok{# tends to be more convictions. We can also}
+\CommentTok{# see that conduct beahviour in childhood}
+\CommentTok{# tends to be a predictor of convictions as}
+\CommentTok{# well as we can see were the conduct disorder}
+\CommentTok{# is at the lowest level (1) there is a}
+\CommentTok{# descrease in convictions and as the levels}
+\CommentTok{# increse, we see higher SES and total}
+\CommentTok{# convictions}
+
+\CommentTok{# Second I look at number of convictions and}
+\CommentTok{# SES and attainment in school}
+\KeywordTok{ggplot}\NormalTok{(combined_data_mut, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ number_of_convictions, }
+    \DataTypeTok{y =} \KeywordTok{as.numeric}\NormalTok{(attainment))) }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{size =} \FloatTok{0.5}\NormalTok{, }
+    \DataTypeTok{alpha =} \DecValTok{1}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_smooth}\NormalTok{(}\DataTypeTok{method =} \StringTok{"lm"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{    }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\NormalTok{disagreement_par) }\OperatorTok{+}\StringTok{ }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \StringTok{"Relationship between number of convictions and SES and conduct behaviour"}\NormalTok{, }
+    \DataTypeTok{subtitle =} \StringTok{"Per conduct level of parental disagreement"}\NormalTok{, }
+    \DataTypeTok{x =} \StringTok{"total convictions (0 = no risk, 1 = none, 2 = one, 3 = two, 4 = three, 5 = 4/5, 6 = 6 &>"}\NormalTok{, }
+    \DataTypeTok{y =} \StringTok{"attainment"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: Removed 38 rows containing non-finite
+## values (stat_smooth).
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: Removed 38 rows containing missing values
+## (geom_point).
+\end{verbatim}
+
+\includegraphics{Test_1_files/figure-latex/unnamed-chunk-12-1}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# please note that JUNIOR SCHOOL LEAVING}
+\CommentTok{# RESULTS were used for the attainment}
+\CommentTok{# variable where 0 =NOT KNOWN OR}
+\CommentTok{# UNASCERTAINABLE, 1 = HIGH, 2 = HIGH AVERAGE,}
+\CommentTok{# 3 = LOW AVERAGE, 4 = LOW) here we see a}
+\CommentTok{# similar pattern, as level of disagreement}
+\CommentTok{# between the parents increases, we see that}
+\CommentTok{# there is poor achievement in school and}
+\CommentTok{# higher number of convictions Fourth I look}
+\CommentTok{# at number of adult convictions and}
+\CommentTok{# impulsivity and convictions at 10-13 age}
+\KeywordTok{ggplot}\NormalTok{(combined_data_mut, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =} \KeywordTok{as.numeric}\NormalTok{(adult_con), }
+    \DataTypeTok{y =}\NormalTok{ impulsivity)) }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{size =} \FloatTok{0.5}\NormalTok{, }
+    \DataTypeTok{alpha =} \DecValTok{1}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_smooth}\NormalTok{(}\DataTypeTok{method =} \StringTok{"lm"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{    }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\NormalTok{convicted_10_}\DecValTok{13}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \StringTok{"Relationship between adult convictions and impulsivity"}\NormalTok{, }
+    \DataTypeTok{subtitle =} \StringTok{"Per age 10 -13 convictions"}\NormalTok{, }\DataTypeTok{x =} \StringTok{"total adult convictions (0 = no risk, 1. non, 2= 1, 3= 2, 4 = 3,...,11 = 10)"}\NormalTok{, }
+    \DataTypeTok{y =} \StringTok{"impulsivity"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: Removed 20 rows containing non-finite
+## values (stat_smooth).
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: Removed 20 rows containing missing values
+## (geom_point).
+\end{verbatim}
+
+\includegraphics{Test_1_files/figure-latex/unnamed-chunk-13-1}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# we can see here that those with}
+\CommentTok{# convictionsat 10-13 years of age, had higher}
+\CommentTok{# impulsivity and higher total number of adult}
+\CommentTok{# convictions}
+
+\CommentTok{# from the graphs above we can already some}
+\CommentTok{# early childhood predictors of criminality}
+\end{Highlighting}
+\end{Shaded}
+
+
+
+\end{document}

@@ -1,0 +1,254 @@
+---
+title: "Lucinda Tsunga Test"
+output:
+  tufte::tufte_html: default
+  tufte::tufte_handout: default
+---
+
+
+
+```{r}
+#Loading the necessary packages using pacman
+library(pacman)
+p_load(tidyverse, magrittr, haven, psych,  kableExtra, gmodels, vcd, 
+      psych, caret, cowplot, tufte, caret, modelr, fmsb, gbm, glmnet, MASS )
+```
+```{r}
+#Loading our two datasets
+delinquency <- read_sav("Cambridge_delinquency_with_caseid (1).sav")
+conviction <- read_sav("conviction_data.sav")
+
+```
+
+Question 1
+
+Create a data set from the data files containing the variables that you want to use in your analysis. In other words, all the variables you want to use to understand and model the early life predictors of criminality. You must include information about convictions at different ages in your data set i.e., you need to merge the two data files, and select the variables and cases you need for the later analysis. Rename variables so that they are identifiable and usable.  If you can do this programmatically i.e., use the tidyverse and other packages to manipulate the data files, and variable names, you will receive higher marks for this question. 
+```{r}
+#I select the variables I need from the delinquency dataset
+#based on the key results from the study, the predictors of offending (in this case I will use the variables total number of convictions - 30 and offending in adulthood -37) were antisocial child behavior (combined conduct disorder 54), impulsivity (porteus maze test qualitative score 121), low intelligence or attainment (JNR school leaving results- 310), family criminality(parents criminal record 300, older siblings deliquency 301), poverty (income of family 92, SES 138, Adversity mom 46, Adversity father 45) and poor parental child-rearing behaviour (attitude mom combine 179, attitude dad combined 178, discipline quality father 62, discipline quality mom 63 and disagreement of parents 196). ALso selected the id variable (4)as we will need it for combining our datasets
+
+delinquency2 <- delinquency %>% 
+  select(v4,v30, v37,v54, v62, v63, v121, v310,v300, v301, v92, v138, v46, v45, v179, v178, v62, v63, v196)
+
+#now I rename the variables
+delinquency2 %<>%
+  rename(icpsr_seq_id_number = v4 , number_of_convictions = v30, adult_con = v37  , comb_conductdisorder = v54, impulsivity = v121 , attainment=v310  , crimrecord_parents= v300  , deliq_oldersiblings = v301  , income_family = v92 , SES_family = v138 , adversity_mom = v46 , adversity_dad = v45 , attitude_mom_combined = v179 , attitude_dad_combined = v178  , discipln_qaulity_dad = v62, discipln_qaulity_mom = v63 , disagreement_par = v196)
+```
+
+```{r}
+#now we convert the conviction dataset to wide format before merging the two datasets
+conviction_wide <- spread(conviction, agecat, convicted)
+conviction_wide %<>% #changing th evariables except id number to factors
+  mutate_if(sapply(conviction_wide, is.numeric), as.factor) %>% 
+  mutate(icpsr_seq_id_number = as.numeric(icpsr_seq_id_number)) #need it as numeric to enable the merge
+```
+```{r}
+#now we combine the two datasets, our key is id
+combined_data <- left_join(delinquency2, conviction_wide, icpsr_seq_id_number = key) 
+```
+Question 2
+Explore the data set, bearing in mind that our key question concerns what the early life determinants of criminality are.  What is worth exploring further, do you think?  Report several (but not too many!) graphs and tables – choose these prudently, and discuss each graph or table you include.  
+```{r}
+#now we do some data expolaration
+str(combined_data)
+#we can see that a lot of our variables are coded as characters when they are in fact factors, we need to mutate them before we can do any further explorations
+```
+```{r}
+#changing the variable by looking at their descriptions in the codebook
+combined_data_mut <- combined_data%<>% 
+  mutate_if(sapply(combined_data, is.numeric), as.factor) %>% 
+  mutate(impulsivity = as.numeric(impulsivity)) %>% #the qualitative scores on the porteus maze test were broken down into 4 consecutive levels- the 4th is the highest score(impulsivity)
+  mutate(disagreement_par = as.numeric(disagreement_par)) %>% #disagreement also has 4 consecutive levels, 4th is the highest (parental disagreement)
+  mutate(icpsr_seq_id_number = as.character(icpsr_seq_id_number)) %>%  #prefer to make id a character
+  # the following variables have consecutive levels and better represented as numeric
+  mutate(number_of_convictions = as.numeric(number_of_convictions)) %>% 
+  mutate(comb_conductdisorder = as.numeric(comb_conductdisorder)) %>% 
+  mutate(SES_family = as.numeric(SES_family)) %>% 
+  mutate(crimrecord_parents = as.numeric(crimrecord_parents))
+```
+```{r}
+#now we can check some summary statistics
+combined_data_mut %>% 
+  select(impulsivity, disagreement_par, number_of_convictions, comb_conductdisorder, SES_family, attainment) %>% 
+  describeBy(group = combined_data_mut$number_of_convictions, mat = T)  
+# we can see here that higher convictions (6 or more) are associated with a higher impulsivity score. We can also see that as the convictions increase in mean, the disagreement between parents also generall increases, this pattern is also seen with conduct disorder reports, where higher convictions are assocaited with higher combined conduct disorder scores. we can see a similar pattern with SES where the lower the class of parents, the higher the convictions.
+```
+```{r}
+combined_data_mut %>% 
+  select(crimrecord_parents, deliq_oldersiblings, number_of_convictions,convicted_10_13, convicted_10_24, convicted_14_16, convicted_17_20, convicted_as_adult, convicted_as_juvenile) %>% 
+  describeBy(group = combined_data_mut$number_of_convictions, mat = T) 
+
+#we can see here that as the number of convictions increase we also see an increase in other convictions, parental criminal records and sibling deliquent behaviours, we need to exlpore some of these variables as tables as they are factors
+```
+
+```{r tables, echo= FALSE}
+table(combined_data_mut$deliq_oldersiblings) %>% kable(caption = "deliqeuncy siblings") %>% 
+                               kable_styling(full_width = F)
+table(combined_data_mut$convicted_10_13) %>% kable(caption = "conv 10-13") %>% 
+                             kable_styling(full_width = F)
+table(combined_data_mut$convicted_10_24) %>% kable(caption = "convicted 10-24") %>% 
+                              kable_styling(full_width = F)
+#We can see that these variablea are quite un blanced, in terms of siblin delinquency,most boys' siblings were not convicted, there were few convictions in the 10 -13 age, there tends to be less convictions in the 10-24 age than non convictions, we might better see these relationships using a mosaic plot
+
+
+```
+```{r}
+mosaic(~ deliq_oldersiblings + convicted_10_13 + convicted_10_24, data = combined_data_mut)
+```
+
+```{r summforplot, echo= FALSE}
+#The mosaic plot shows a relationship bewtween convicted in 10-24 age range and delinquency in older siblings 
+#I compute some summary statistics to take a look at the data, by condition, 
+summcomb <- combined_data_mut%>% 
+  select(number_of_convictions, comb_conductdisorder, impulsivity, crimrecord_parents, SES_family, deliq_oldersiblings, convicted_10_13, convicted_10_24)%>%
+  group_by(deliq_oldersiblings, convicted_10_13, convicted_10_24) %>%
+  na.omit() %>% 
+  summarise_all(funs(mean, sd, n())) 
+
+summcomb%>% 
+  kable() %>% kable_styling(full_width = F)
+#we can see that convictions at 10-24 are associated with a higher sibling delinquecy,average number of convictions, conduct disorder, parent criminal records and a lower SES
+```
+
+```{r}
+#let's explore these relationships further with graphs
+#First I look at number of convictions and SES and conduct behaviour
+ggplot(combined_data_mut, na.rm=TRUE, aes(x = number_of_convictions, y = SES_family)) +
+  geom_point(size = 0.5, alpha = 1) + 
+  geom_smooth(method = "lm") +
+  facet_wrap(~comb_conductdisorder) +
+  labs(title = "Relationship between number of convictions and family SES", 
+      subtitle = "Per conduct disorder behaviour(1-5)", x ="total convictions (0 = no risk, 1 = none, 2 = one, 3 = two, 4 = three, 5 = 4/5, 6 = 6 &>",   y = "SES family")
+```
+
+
+```{r}
+#please note the following in terms of SES, the values represent the following classes 1. II NON-MANUAL, 2. III NON-MANUAL, 3. III MANUAL, 4. IV NON-MANUAL, 5. IV MANUAL, 6. V MANUAL (I Professional occupations,II Managerial and technical occupations, IIIN Skilled non-manual occupations, IIIM Skilled manual occupations, IV Partly-skilled occupations, V Unskilled occupations) 
+#we can see that as the family SES descreseas (determinsed by parental occupations), there tends to be more convictions. We can also see that conduct beahviour in childhood tends to be a predictor of convictions as well as we can see were the conduct disorder is at the lowest level (1) there is a descrease in convictions and as the levels increse, we see higher SES and total convictions
+
+#Second I look at number of convictions and SES and attainment in school
+ggplot(combined_data_mut, na.rm=TRUE, aes(x = number_of_convictions, y = as.numeric(attainment))) +
+  geom_point(size = 0.5, alpha = 1) + 
+  geom_smooth(method = "lm") +
+  facet_wrap(~disagreement_par) +
+  labs(title = "Relationship between number of convictions and SES and conduct behaviour", 
+      subtitle = "Per conduct level of parental disagreement", x ="total convictions (0 = no risk, 1 = none, 2 = one, 3 = two, 4 = three, 5 = 4/5, 6 = 6 &>",   y = "attainment")
+
+```
+```{r}
+#please note that JUNIOR SCHOOL LEAVING RESULTS were used for the attainment variable where 0 =NOT KNOWN OR UNASCERTAINABLE, 1 = HIGH, 2 = HIGH AVERAGE, 3 = LOW AVERAGE, 4 = LOW)
+#here we see a similar pattern, as level of disagreement between the parents increases, we see that there is poor achievement in school and higher number of convictions
+ #Fourth I look at number of adult convictions and impulsivity and convictions at 10-13 age
+ggplot(combined_data_mut, na.rm=TRUE, aes(x = as.numeric(adult_con), y = impulsivity)) +
+  geom_point(size = 0.5, alpha = 1) + 
+  geom_smooth(method = "lm") +
+  facet_wrap(~convicted_10_13) +
+  labs(title = "Relationship between adult convictions and impulsivity", 
+      subtitle = "Per age 10 -13 convictions", x ="total adult convictions (0 = no risk, 1. non, 2= 1, 3= 2, 4 = 3,...,11 = 10)",   y = "impulsivity")
+
+
+```
+```{r}
+#we can see here that those with convictions at 10-13 years of age, had higher impulsivity and higher total number of adult convictions
+
+#from the graphs above we can already some early childhood predictors of criminality
+
+```
+Question 3
+We wish to model the occurrence and extent of criminality in our participants on the basis of early life events or factors.  Use all the considerations at your disposal (the description above, your data exploration in Question 2, your reading of the articles we have provided, etc.) to construct a statistical model, or even more than one model if you wish.  Interpret your model(s).  Write a function to assess the predictive accuracy of your model(s), test it, and apply it to your data.
+(This question is deliberately quite open ended.  Here are some things you may want to consider:
+Model selection – hierarchical?  Or stepwise?  Or a penalised method? 
+Model validation – validation set?  Or cross-validation?  
+Analytic method – OLS regression?  Or logistic regression?  Or discriminant analysis? Or tree methods?
+Reporting of results – normal theory estimates, or bootstrapped estimates?  Coefficient meanings?)
+```{r}
+#Model Building
+#start by creating training and test datasets
+crimtrain.dat <- sample_frac(combined_data_mut, 0.75)
+crimtest.dat  <- setdiff(combined_data_mut, crimtrain.dat)
+   
+```
+```{r}
+#now building our general linear regression model using glm, 
+crimmode1 <- glm( as.factor(number_of_convictions) ~ comb_conductdisorder + impulsivity + crimrecord_parents + SES_family + disagreement_par + as.numeric(attainment) + as.numeric(deliq_oldersiblings), family = "binomial", data = crimtrain.dat)
+
+summary(crimmode1)
+#the model shows that conduct disorder and parent criminal history are the most significant predictors of criminality as measured by number of convictions, these are followed by sibling convictions and family ses repectively
+```
+```{r}
+# testing the model for significance
+1-pchisq(crimmode1$deviance,
+         crimmode1$df.residual)  
+#our p-value is therefore 0.13, wwhich means that there is an 87% chance that the sample average equals the population average
+```
+```{r}
+#   Now we Compute pseudo Rsq from fmsb
+NagelkerkeR2(crimmode1) #Rsq is 0.24 which means that the model explains only 24% of te variability
+```
+```{r}
+#now predicting model on test data
+trainpredict <- predict(crimmode1, crimtest.dat)
+testpredict  <- predict(crimmode1, newdata = crimtest.dat)
+#We compute the MSEs
+mse(trainpredict, as.factor(crimtrain.dat$number_of_convictions))
+mse(testpredict,  as.factor(crimtest.dat$number_of_convictions))
+```
+```{r}
+#makinga function that will compute mse
+# mse null function
+msenull <- function (amode1) {
+  a <- unlist(amode1$model[1])
+  MSE <- (mean((a - mean(a))^2))
+  MSE
+}
+
+# mse full function
+msefull <- function (amodel) {
+  MSE <- mean(crimmode1$residuals^2)
+  MSE
+}
+# Function that puts out both msenull and msefull
+msemodel <- function (amode1) {
+  msefull <- mean(crimmode1$residuals^2)
+  a <- unlist(amode1$model[1])
+  msenull <- (mean((a - mean(a))^2))
+  print("Mse for null model; MSE for full model")
+  output <- paste(round(msenull,4), "             ", round(msefull,4))
+  output
+}
+
+msefull(crimmode1)
+msenull(crimmode1)
+
+# MSE explained by null model i.e. only the y variable
+msenull(crimmode1)
+
+# Both mses
+msemodel(crimmode1) #the one mses that was able to come out is 6.23
+```
+```{r}
+#let's build a linear discriminat model and see
+ldamodel1 <- lda(as.factor(number_of_convictions) ~ comb_conductdisorder + impulsivity + crimrecord_parents + SES_family + disagreement_par + as.numeric(attainment) + as.numeric(deliq_oldersiblings), data = crimtrain.dat)
+ldamodel1
+
+
+```
+```{r}
+#This model is giving us five linear discriminants, the first linear discriminant explains  65% of the between-group variance in the  dataset
+
+ldamodel1predict <- predict(ldamodel1, na.action = na.pass)
+confusionMatrix(as.factor(ldamodel1predict$class), as.factor(crimtrain.dat$number_of_convictions), 
+               positive = c("1"), na.action = na.pass)
+
+```
+```{r}
+#tried acssessing accuracy with the previous method, it didnt work, also seen with htis method, has to do with length of the datset, tried using a table, and removing missing data still didnt work.
+
+crimforsigtest <- crimtrain.dat %>%   
+                        dplyr::select(comb_conductdisorder ,impulsivity , crimrecord_parents , SES_family , disagreement_par , attainment , deliq_oldersiblings)
+crimforsigtest <- as.matrix(crimforsigtest)
+summary(manova(crimforsigtest ~ as.factor(crimtrain.dat$number_of_convictions),na.action = na.pass ), test = "Wilks")
+```
+
+
+
